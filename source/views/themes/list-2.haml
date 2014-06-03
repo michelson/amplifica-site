@@ -1,0 +1,16 @@
+
+
+.col-12
+  %h2 {{section.title}}
+
+  {{#each projects}}
+  .list-project
+
+    %h3
+      %a.pjax{:href => "{{ProjectUrl this}}"} {{title}}
+
+    %a.thumbnail{:href => "{{ProjectUrl this}}"}
+      %img{:alt => "{{title}}", :src => "{{ProjectImg 'xlarge'}}"}
+
+    %hr
+  {{/each}}

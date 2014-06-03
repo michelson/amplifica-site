@@ -1,0 +1,74 @@
+
+
+$(document).ready ->
+  $('#isotope_container').isotope(
+    layoutMode : 'fitRows'
+  )
+
+
+  $('#isotope_container img.unveil').livequery ->
+    
+    #$(@).unveil 200, ()->
+      #console.log @
+    #  $(@).load ()->
+    #    @.style.opacity = 1;
+
+    $(@).lazyload 
+      effect : "fadeIn"
+
+
+  $('#home-submenu a').livequery( 'click', (e)->
+    e.preventDefault()
+    $(".black-panel").hide()
+    $(".black-panel").show() if $(e.currentTarget).data("showpanel")
+    $(this).tab('show')
+  )
+
+  #$("#home").livequery ()->
+  #  $.backstretch("<%= image_path('condor-bg.jpg') %>");
+  #  $(".backstretch").css(opacity: 0.31 )
+
+
+
+  $(".horizontal-images").livequery ->
+
+    totalImageWidth = 0
+
+    imagesLoaded $(this), =>
+    
+      $(".item", this).each ->
+        totalImageWidth += $(this).width() + 48
+
+      $(this).width totalImageWidth
+
+
+
+  $("#galleria").livequery( ()->
+    Galleria.run "#galleria",
+      #dataSource: data
+      extend: (options) ->
+        #Galleria.log this # the gallery instance
+        #Galleria.log options # the gallery options
+
+        # listen to when an image is shown
+        @bind "image", (e) ->
+          #Galleria.log e # the event object may contain custom objects, in this case the main image
+          #Galleria.log e.imageTarget # the current image
+          # lets make galleria open a lightbox when clicking the main image:
+          $(e.imageTarget).click @proxy(->
+            @openLightbox()
+            #@enterFullscreen()
+          )
+
+        @attachKeyboard
+          left: @prev # applies the native prev() function
+          right: @next
+          13: ->
+            # start playing when return (keyCode 13) is pressed:
+            @play 3000
+  )
+
+
+
+
+

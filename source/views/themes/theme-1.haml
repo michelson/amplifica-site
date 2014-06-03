@@ -1,0 +1,12 @@
+
+.container
+
+  %h2.exhibit-title.title {{title}}
+
+  #galleria
+    {{#each photos}}
+    %img{src: "{{PhotoImg 'xlarge'}}"}
+    {{/each}}
+
+.col-12
+  %p {{{ body }}}

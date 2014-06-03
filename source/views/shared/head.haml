@@ -1,0 +1,25 @@
+%title Marcelo Fica
+%meta{:content => "Marcelo Fica", :name => "description"}
+%meta{:content => "Marcelo Fica", :name => "keywords"}
+%meta{:content => "INDEX,FOLLOW", :name => "ROBOTS"}
+
+%meta{ :name=>"apple-mobile-web-app-capable", :content=>"yes"}
+
+%meta{ :name=>"viewport", :content=>"width=device-width, :initial-scale=1.0"}
+
+%meta{ :'http-equiv'=>"X-UA-Compatible", :content=>"IE=edge"}
+
+%link{ href: image_path("favicon.ico"), rel: "icon", type: "image/x-icon"}
+
+= stylesheet_link_tag "application"
+
+%script{:src => "/cross-domain/respond.js"}
+/ Respond.js proxy on external server
+%link#respond-proxy{:href => "http://pullentity.s3.amazonaws.com/cross-domain/respond-proxy.html", :rel => "respond-proxy"}/
+/ Respond.js redirect location on local server
+%link#respond-redirect{:href => "/cross-domain/respond.proxy.gif", :rel => "respond-redirect"}/
+%script{:src => "/cross-domain/respond.proxy.js"}
+
+= javascript_include_tag "application"
+
+= yield_content(:application_js)

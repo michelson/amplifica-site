@@ -1,0 +1,25 @@
+<style>
+  .backstretch{display:block}
+</style>
+<div class='container'>
+  <h2 class='pull-left affix' id='home-title'>{{title}}</h2>
+  <div class='black-panel affix'></div>
+</div>
+<div class='tab-content'>
+  <div class='row tab-pane active' id='isotope_container'>
+    {{#each photos}}
+    <div class='list_image_item'>
+      <a class='fancybox' href="{{PhotoImg 'xlarge'}}" rel='group' title='{{caption}}'>
+        <img alt='' class='img-responsive' src="{{PhotoImg 'square_200'}}">
+      </a>
+      <!--
+        <div class='carousel-caption'>
+          <h4>{{title}}</h4>
+          <p>{{caption}}</p>
+        </div>
+      -->
+    </div>
+    {{/each}}
+  </div>
+  {{{body}}}
+</div>

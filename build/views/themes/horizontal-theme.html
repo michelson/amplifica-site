@@ -1,0 +1,46 @@
+<style>
+  /*body{
+    background-color:#fff;
+  }
+  #horizontal-theme{
+    color:#000;
+  }
+  #footer{
+    color:black;
+    border-top: 1px solid #ECECEC;
+  }*/
+</style>
+<div class='container'>
+  <div class='col-12'>
+    <h2>{{title}}</h2>
+    <ul class='nav nav-pills pull-left' id='project-menu'>
+      <li class='active'>
+        <a data-toggle='tab' href='#main-text'>Imágenes</a>
+      </li>
+      <li>
+        <a data-toggle='tab' href='#concept'>Concepto</a>
+      </li>
+    </ul>
+    <div class='clearfix'></div>
+    <div class='tab-content'>
+      <div class='tab-pane active' id='main-text'>
+        <div class='horizontal-images'>
+          {{#each photos}}
+          <div class='item'>
+            <a class='fancybox' href="{{PhotoImg 'xlarge'}}" rel='group' title='{{caption}}'>
+              <img alt='' src="{{PhotoImg 'large'}}">
+              <div class='caption'>
+                <h4>{{title}}</h4>
+                <p>{{caption}}</p>
+              </div>
+            </a>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class='tab-pane' id='concept'>
+        <p>{{{ body }}}</p>
+      </div>
+    </div>
+  </div>
+</div>

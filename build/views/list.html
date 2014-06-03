@@ -1,0 +1,22 @@
+<style>
+  .backstretch{display:none}
+</style>
+<div class='col-12'>
+  <h2>{{section.title}}</h2>
+  <div class='thumbnails'>
+    {{#each projects}}
+    <div class='col-lg-5 col-sm-3 col-4'>
+      <div class='thumbnail'>
+        <a href='{{ProjectUrl this}}'>
+          <img alt='{{title}}' class='img-responsive' src="{{ProjectImg 'medium'}}">
+        </a>
+        <div class='caption'>
+          <h4>
+            <a class='pjax' href='{{ProjectUrl this}}'>{{ title }}</a>
+          </h4>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

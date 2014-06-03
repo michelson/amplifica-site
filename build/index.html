@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <script>
+      !window.pullentity_domain ? window.pullentity_domain = "http://modifica.pullentity.com" : null
+    </script>
+    <title>Marcelo Fica</title>
+    <meta content='Marcelo Fica' name='description'>
+    <meta content='Marcelo Fica' name='keywords'>
+    <meta content='INDEX,FOLLOW' name='ROBOTS'>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <meta content='width=device-width, :initial-scale=1.0' name='viewport'>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <link href='http://pullentity.s3.amazonaws.com/uploads/theme_asset/modifica/theme/marcelofica/assets/favicon.ico' rel='icon' type='image/x-icon'>
+    <link href='http://pullentity.s3.amazonaws.com/uploads/theme_asset/modifica/theme/marcelofica/assets/application.css?1401740998' media='screen' rel='stylesheet' type='text/css' />
+    <script src='/cross-domain/respond.js'></script>
+    <!-- Respond.js proxy on external server -->
+    <link href='http://pullentity.s3.amazonaws.com/cross-domain/respond-proxy.html' id='respond-proxy' rel='respond-proxy'>
+    <!-- Respond.js redirect location on local server -->
+    <link href='/cross-domain/respond.proxy.gif' id='respond-redirect' rel='respond-redirect'>
+    <script src='/cross-domain/respond.proxy.js'></script>
+    <script src='http://pullentity.s3.amazonaws.com/uploads/theme_asset/modifica/theme/marcelofica/assets/application.js?1401740998' type='text/javascript'></script>
+  </head>
+  <script>
+    // put inline js here or use assets path
+    
+    $(function() {
+    
+      //$.pjax.defaults.timeout = 5000;
+      //$('a.pjax').pjax('[data-pjax-container]');
+    
+      function onAfter(curr, next, opts) {
+        var index = opts.currSlide;
+        //$('#prev')[index == 0 ? 'hide' : 'show']();
+        //$('#next')[index == opts.slideCount - 1 ? 'hide' : 'show']();
+      }
+      function onBefore(curr, next, opts) {
+        $("#num").html("("+ (opts.currSlide + 1) + " of " + opts.slideCount + ")");
+      }
+      $('#slideshow')
+        .livequery(function(){
+        $(this).cycle({
+        fx:     'fade',
+        prev:   '#prev',
+        next:   '#next',
+        after:   onAfter,
+        before:   onBefore,
+        timeout: 0
+        });
+      });
+    
+      $(".fancybox").livequery(function(){
+        $(this).fancybox({
+          padding : 0,
+          openEffect  : 'none',
+          closeEffect : 'none',
+          arrows: true,
+            next : {
+              13 : 'left', // enter
+              34 : 'up',   // page down
+              39 : 'left', // right arrow
+              40 : 'up'    // down arrow
+            },
+            prev : {
+              8  : 'right',  // backspace
+              33 : 'down',   // page up
+              37 : 'right',  // left arrow
+              38 : 'down'    // up arrow
+            },
+            close  : [27], // escape key
+            play   : [32], // space - start/stop slideshow
+            toggle : [70]  // letter "f" - toggle fullscreen
+        });
+      });
+    
+    
+      $('.myCarousel')
+        .livequery(function(){
+        $(this).find(".item").first().addClass('active');
+        $(this).carousel();
+      });
+    
+      $.ajaxSetup({
+        dataType: "script",
+        beforeSend: function() {
+          return $("#loader").fadeIn();
+        },
+        complete: function() {
+          return $("#loader").fadeOut();
+        }
+      });
+    
+    });
+  </script>
+  <style>
+    /* put inline css here or use sass in assets path */
+  </style>
+  <body>
+    <script id='layout' type='text/x-handlebars-template'>
+      <nav class='transparent navbar navbar-fixed-top' role='navigation'>
+        <div class='container'>
+          <div class='navbar-header'>
+            <button class='navbar-toggle' data-target='.nav-collapse' data-toggle='collapse' type='button'>
+              <span class='sr-only'></span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+            </button>
+            <div class='title'>
+              <a class='navbar-brand' href='/#'>{{name}}</a>
+            </div>
+          </div>
+          <div class='navbar-inner pull-right'>
+            <div class='nav-collapse collapse'>
+              <ul class='nav navbar-nav'>
+                <li>
+                  <a href='/#'>Home</a>
+                </li>
+                {{#each sections}}
+                {{#show_in_menu}}
+                <li>
+                  <a href='{{SectionUrl this}}'>{{title}}</a>
+                </li>
+                {{/show_in_menu}}
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class='container'>
+        <div id='content'></div>
+        <div id='inner'></div>
+      </div>
+      <div class='clearfix'></div>
+      <div id='footer'>
+        Marcelo Fica
+        -  copyright 2013
+      </div>
+    </script>
+    <script class='pullentity-themes' id='bio' type='text/x-handlebars-template'>
+      <div id='bio'>
+        <style>
+          .backstretch{display:none}
+          nav.transparent.navbar {
+            background: white;
+          }
+        </style>
+        <div class='container'>
+          <div class='col-12'>
+            <h2 class='title centered'>{{title}}</h2>
+            <div class='col-8'>
+              {{{body}}}
+            </div>
+            <div class='col-4'>
+              {{#each photos}}
+              <img class='thumbnail' src="{{PhotoImg 'square_200'}}">
+              {{/each}}
+              <address>
+                <strong>Marcelo Fica, .</strong>
+                <br>
+                Santiago, RM, Chile
+              </address>
+              <address>
+                <strong>Marcelo Fica</strong>
+                <br>
+                <a href='mailto:#'>amplifica@gmail.com</a>
+              </address>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script class='pullentity-themes' id='home' type='text/x-handlebars-template'>
+      <div id='home'>
+        <div class='container'>
+          <h2 class='exhibit-title title'>{{title}}</h2>
+          <div id='galleria'>
+            {{#each photos}}
+            <img src="{{PhotoImg 'xlarge'}}">
+            {{/each}}
+          </div>
+        </div>
+        <p>{{{project.body}}}</p>
+        {{{fb_comments}}}
+      </div>
+    </script>
+    <script class='pullentity-themes' id='horizontal-theme' type='text/x-handlebars-template'>
+      <div id='horizontal-theme'>
+        <style>
+          /*body{
+            background-color:#fff;
+          }
+          #horizontal-theme{
+            color:#000;
+          }
+          #footer{
+            color:black;
+            border-top: 1px solid #ECECEC;
+          }*/
+        </style>
+        <div class='container'>
+          <div class='col-12'>
+            <h2>{{title}}</h2>
+            <ul class='nav nav-pills pull-left' id='project-menu'>
+              <li class='active'>
+                <a data-toggle='tab' href='#main-text'>Imágenes</a>
+              </li>
+              <li>
+                <a data-toggle='tab' href='#concept'>Concepto</a>
+              </li>
+            </ul>
+            <div class='clearfix'></div>
+            <div class='tab-content'>
+              <div class='tab-pane active' id='main-text'>
+                <div class='horizontal-images'>
+                  {{#each photos}}
+                  <div class='item'>
+                    <a class='fancybox' href="{{PhotoImg 'xlarge'}}" rel='group' title='{{caption}}'>
+                      <img alt='' src="{{PhotoImg 'large'}}">
+                      <div class='caption'>
+                        <h4>{{title}}</h4>
+                        <p>{{caption}}</p>
+                      </div>
+                    </a>
+                  </div>
+                  {{/each}}
+                </div>
+              </div>
+              <div class='tab-pane' id='concept'>
+                <p>{{{ body }}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script class='pullentity-themes' id='isotope' type='text/x-handlebars-template'>
+      <div id='isotope'>
+        <style>
+          .backstretch{display:block}
+        </style>
+        <div class='container'>
+          <h2 class='pull-left affix' id='home-title'>{{title}}</h2>
+          <div class='black-panel affix'></div>
+        </div>
+        <div class='tab-content'>
+          <div class='row tab-pane active' id='isotope_container'>
+            {{#each photos}}
+            <div class='list_image_item'>
+              <a class='fancybox' href="{{PhotoImg 'xlarge'}}" rel='group' title='{{caption}}'>
+                <img alt='' class='img-responsive' src="{{PhotoImg 'square_200'}}">
+              </a>
+              <!--
+                <div class='carousel-caption'>
+                  <h4>{{title}}</h4>
+                  <p>{{caption}}</p>
+                </div>
+              -->
+            </div>
+            {{/each}}
+          </div>
+          {{{body}}}
+        </div>
+      </div>
+    </script>
+    <script class='pullentity-themes' id='list-2' type='text/x-handlebars-template'>
+      <div id='list-2'>
+        <div class='col-12'>
+          <h2>{{section.title}}</h2>
+          {{#each projects}}
+          <div class='list-project'>
+            <h3>
+              <a class='pjax' href='{{ProjectUrl this}}'>{{title}}</a>
+            </h3>
+            <a class='thumbnail' href='{{ProjectUrl this}}'>
+              <img alt='{{title}}' src="{{ProjectImg 'xlarge'}}">
+            </a>
+            <hr>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </script>
+    <script class='pullentity-themes' id='text-only' type='text/x-handlebars-template'>
+      <div id='text-only'>
+        <style>
+          //.backstretch{display:none}
+        </style>
+        <div class='container'>
+          <div class='col-12'>
+            <h2>{{title}}</h2>
+            {{{body}}}
+          </div>
+        </div>
+      </div>
+    </script>
+    <script class='pullentity-themes' id='theme-1' type='text/x-handlebars-template'>
+      <div id='theme-1'>
+        <div class='container'>
+          <h2 class='exhibit-title title'>{{title}}</h2>
+          <div id='galleria'>
+            {{#each photos}}
+            <img src="{{PhotoImg 'xlarge'}}">
+            {{/each}}
+          </div>
+        </div>
+        <div class='col-12'>
+          <p>{{{ body }}}</p>
+        </div>
+      </div>
+    </script>
+    <script class='pullentity-themes' id='list' type='text/x-handlebars-template'>
+      <style>
+        .backstretch{display:none}
+      </style>
+      <div class='col-12'>
+        <h2>{{section.title}}</h2>
+        <div class='thumbnails'>
+          {{#each projects}}
+          <div class='col-lg-5 col-sm-3 col-4'>
+            <div class='thumbnail'>
+              <a href='{{ProjectUrl this}}'>
+                <img alt='{{title}}' class='img-responsive' src="{{ProjectImg 'medium'}}">
+              </a>
+              <div class='caption'>
+                <h4>
+                  <a class='pjax' href='{{ProjectUrl this}}'>{{ title }}</a>
+                </h4>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </script>
+  </body>
+</html>

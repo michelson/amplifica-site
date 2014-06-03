@@ -1,0 +1,27 @@
+:css
+  .backstretch{display:none}
+  nav.transparent.navbar {
+    background: white;
+  }
+  
+.container
+
+  .col-12
+    %h2.title.centered {{title}}
+    .col-8
+      {{{body}}}
+    .col-4
+
+      {{#each photos}}
+      %img.thumbnail{src: "{{PhotoImg 'square_200'}}"}
+      {{/each}}
+      %address
+        %strong Marcelo Fica, .
+        %br/
+        Santiago, RM, Chile
+
+      %address
+        %strong Marcelo Fica
+        %br/
+        %a{href: "mailto:#"} amplifica@gmail.com
+

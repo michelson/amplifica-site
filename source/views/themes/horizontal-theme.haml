@@ -1,0 +1,41 @@
+:css
+  /*body{
+    background-color:#fff;
+  }
+  #horizontal-theme{
+    color:#000;
+  }
+  #footer{
+    color:black;
+    border-top: 1px solid #ECECEC;
+  }*/
+
+.container
+
+  .col-12
+    %h2 {{title}}
+
+    %ul#project-menu.nav.nav-pills.pull-left
+      %li.active
+        %a{:href=>"#main-text", :"data-toggle"=>"tab"} Imágenes
+      %li
+        %a{:href=>"#concept", :"data-toggle"=>"tab"} Concepto
+    
+    .clearfix
+    
+    .tab-content
+      #main-text.tab-pane.active
+        .horizontal-images
+          {{#each photos}}
+          .item
+            %a.fancybox{:href => "{{PhotoImg 'xlarge'}}", :rel=>"group", title: "{{caption}}"}
+              %img{:alt => "", :src => "{{PhotoImg 'large'}}"}/
+              .caption
+                %h4 {{title}}
+                %p {{caption}}
+          {{/each}}
+      #concept.tab-pane
+        
+        %p {{{ body }}}
+    
+

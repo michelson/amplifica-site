@@ -1,0 +1,14 @@
+
+
+
+= content_for :principal do
+
+  - theme_list = Dir.foreach(Dir.pwd + ("/source/views/themes") ).grep(/.haml/)
+
+  - theme_list.each do |o|
+    %script{ type: "text/x-handlebars-template", id: "#{o.gsub(".haml", "")}", class: "pullentity-themes"}
+      %div{ id: "#{o.gsub(".haml", "")}" }
+        = partial "views/themes/#{o.gsub(".haml", "")}"
+
+  %script{ type: "text/x-handlebars-template", id: "list", class: "pullentity-themes"}
+    = partial "views/list"

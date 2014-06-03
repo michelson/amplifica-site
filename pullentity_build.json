@@ -1,0 +1,68 @@
+{
+  "theme_name": "marcelofica",
+  "themes": [
+    {
+      "name": "bio",
+      "content": "<style>\n  .backstretch{display:none}\n  nav.transparent.navbar {\n    background: white;\n  }\n</style>\n<div class='container'>\n  <div class='col-12'>\n    <h2 class='title centered'>{{title}}</h2>\n    <div class='col-8'>\n      {{{body}}}\n    </div>\n    <div class='col-4'>\n      {{#each photos}}\n      <img class='thumbnail' src=\"{{PhotoImg 'square_200'}}\">\n      {{/each}}\n      <address>\n        <strong>Marcelo Fica, .</strong>\n        <br>\n        Santiago, RM, Chile\n      </address>\n      <address>\n        <strong>Marcelo Fica</strong>\n        <br>\n        <a href='mailto:#'>amplifica@gmail.com</a>\n      </address>\n    </div>\n  </div>\n</div>\n"
+    },
+    {
+      "name": "home",
+      "content": "<div class='container'>\n  <h2 class='exhibit-title title'>{{title}}</h2>\n  <div id='galleria'>\n    {{#each photos}}\n    <img src=\"{{PhotoImg 'xlarge'}}\">\n    {{/each}}\n  </div>\n</div>\n<p>{{{project.body}}}</p>\n{{{fb_comments}}}\n"
+    },
+    {
+      "name": "horizontal-theme",
+      "content": "<style>\n  /*body{\n    background-color:#fff;\n  }\n  #horizontal-theme{\n    color:#000;\n  }\n  #footer{\n    color:black;\n    border-top: 1px solid #ECECEC;\n  }*/\n</style>\n<div class='container'>\n  <div class='col-12'>\n    <h2>{{title}}</h2>\n    <ul class='nav nav-pills pull-left' id='project-menu'>\n      <li class='active'>\n        <a data-toggle='tab' href='#main-text'>Imágenes</a>\n      </li>\n      <li>\n        <a data-toggle='tab' href='#concept'>Concepto</a>\n      </li>\n    </ul>\n    <div class='clearfix'></div>\n    <div class='tab-content'>\n      <div class='tab-pane active' id='main-text'>\n        <div class='horizontal-images'>\n          {{#each photos}}\n          <div class='item'>\n            <a class='fancybox' href=\"{{PhotoImg 'xlarge'}}\" rel='group' title='{{caption}}'>\n              <img alt='' src=\"{{PhotoImg 'large'}}\">\n              <div class='caption'>\n                <h4>{{title}}</h4>\n                <p>{{caption}}</p>\n              </div>\n            </a>\n          </div>\n          {{/each}}\n        </div>\n      </div>\n      <div class='tab-pane' id='concept'>\n        <p>{{{ body }}}</p>\n      </div>\n    </div>\n  </div>\n</div>\n"
+    },
+    {
+      "name": "isotope",
+      "content": "<style>\n  .backstretch{display:block}\n</style>\n<div class='container'>\n  <h2 class='pull-left affix' id='home-title'>{{title}}</h2>\n  <div class='black-panel affix'></div>\n</div>\n<div class='tab-content'>\n  <div class='row tab-pane active' id='isotope_container'>\n    {{#each photos}}\n    <div class='list_image_item'>\n      <a class='fancybox' href=\"{{PhotoImg 'xlarge'}}\" rel='group' title='{{caption}}'>\n        <img alt='' class='img-responsive' src=\"{{PhotoImg 'square_200'}}\">\n      </a>\n      <!--\n        <div class='carousel-caption'>\n          <h4>{{title}}</h4>\n          <p>{{caption}}</p>\n        </div>\n      -->\n    </div>\n    {{/each}}\n  </div>\n  {{{body}}}\n</div>\n"
+    },
+    {
+      "name": "list-2",
+      "content": "<div class='col-12'>\n  <h2>{{section.title}}</h2>\n  {{#each projects}}\n  <div class='list-project'>\n    <h3>\n      <a class='pjax' href='{{ProjectUrl this}}'>{{title}}</a>\n    </h3>\n    <a class='thumbnail' href='{{ProjectUrl this}}'>\n      <img alt='{{title}}' src=\"{{ProjectImg 'xlarge'}}\">\n    </a>\n    <hr>\n  </div>\n  {{/each}}\n</div>\n"
+    },
+    {
+      "name": "text-only",
+      "content": "<style>\n  //.backstretch{display:none}\n</style>\n<div class='container'>\n  <div class='col-12'>\n    <h2>{{title}}</h2>\n    {{{body}}}\n  </div>\n</div>\n"
+    },
+    {
+      "name": "theme-1",
+      "content": "<div class='container'>\n  <h2 class='exhibit-title title'>{{title}}</h2>\n  <div id='galleria'>\n    {{#each photos}}\n    <img src=\"{{PhotoImg 'xlarge'}}\">\n    {{/each}}\n  </div>\n</div>\n<div class='col-12'>\n  <p>{{{ body }}}</p>\n</div>\n"
+    }
+  ],
+  "js": "\n  // put inline js here or use assets path\n  \n  $(function() {\n  \n    //$.pjax.defaults.timeout = 5000;\n    //$('a.pjax').pjax('[data-pjax-container]');\n  \n    function onAfter(curr, next, opts) {\n      var index = opts.currSlide;\n      //$('#prev')[index == 0 ? 'hide' : 'show']();\n      //$('#next')[index == opts.slideCount - 1 ? 'hide' : 'show']();\n    }\n    function onBefore(curr, next, opts) {\n      $(\"#num\").html(\"(\"+ (opts.currSlide + 1) + \" of \" + opts.slideCount + \")\");\n    }\n    $('#slideshow')\n      .livequery(function(){\n      $(this).cycle({\n      fx:     'fade',\n      prev:   '#prev',\n      next:   '#next',\n      after:   onAfter,\n      before:   onBefore,\n      timeout: 0\n      });\n    });\n  \n    $(\".fancybox\").livequery(function(){\n      $(this).fancybox({\n        padding : 0,\n        openEffect  : 'none',\n        closeEffect : 'none',\n        arrows: true,\n          next : {\n            13 : 'left', // enter\n            34 : 'up',   // page down\n            39 : 'left', // right arrow\n            40 : 'up'    // down arrow\n          },\n          prev : {\n            8  : 'right',  // backspace\n            33 : 'down',   // page up\n            37 : 'right',  // left arrow\n            38 : 'down'    // up arrow\n          },\n          close  : [27], // escape key\n          play   : [32], // space - start/stop slideshow\n          toggle : [70]  // letter \"f\" - toggle fullscreen\n      });\n    });\n  \n  \n    $('.myCarousel')\n      .livequery(function(){\n      $(this).find(\".item\").first().addClass('active');\n      $(this).carousel();\n    });\n  \n    $.ajaxSetup({\n      dataType: \"script\",\n      beforeSend: function() {\n        return $(\"#loader\").fadeIn();\n      },\n      complete: function() {\n        return $(\"#loader\").fadeOut();\n      }\n    });\n  \n  });\n",
+  "css": "\n  /* put inline css here or use sass in assets path */\n",
+  "layout": "\n  <nav class='transparent navbar navbar-fixed-top' role='navigation'>\n    <div class='container'>\n      <div class='navbar-header'>\n        <button class='navbar-toggle' data-target='.nav-collapse' data-toggle='collapse' type='button'>\n          <span class='sr-only'></span>\n          <span class='icon-bar'></span>\n          <span class='icon-bar'></span>\n          <span class='icon-bar'></span>\n        </button>\n        <div class='title'>\n          <a class='navbar-brand' href='/#'>{{name}}</a>\n        </div>\n      </div>\n      <div class='navbar-inner pull-right'>\n        <div class='nav-collapse collapse'>\n          <ul class='nav navbar-nav'>\n            <li>\n              <a href='/#'>Home</a>\n            </li>\n            {{#each sections}}\n            {{#show_in_menu}}\n            <li>\n              <a href='{{SectionUrl this}}'>{{title}}</a>\n            </li>\n            {{/show_in_menu}}\n            {{/each}}\n          </ul>\n        </div>\n      </div>\n    </div>\n  </nav>\n  <div class='container'>\n    <div id='content'></div>\n    <div id='inner'></div>\n  </div>\n  <div class='clearfix'></div>\n  <div id='footer'>\n    Marcelo Fica\n    -  copyright 2013\n  </div>\n",
+  "head": "<title>Marcelo Fica</title>\n<meta content='Marcelo Fica' name='description'>\n<meta content='Marcelo Fica' name='keywords'>\n<meta content='INDEX,FOLLOW' name='ROBOTS'>\n<meta content='yes' name='apple-mobile-web-app-capable'>\n<meta content='width=device-width, :initial-scale=1.0' name='viewport'>\n<meta content='IE=edge' http-equiv='X-UA-Compatible'>\n<link href='http://pullentity.s3.amazonaws.com/uploads/theme_asset/modifica/theme/marcelofica/assets/favicon.ico' rel='icon' type='image/x-icon'>\n<link href='http://pullentity.s3.amazonaws.com/uploads/theme_asset/modifica/theme/marcelofica/assets/application.css?1401740998' media='screen' rel='stylesheet' type='text/css' />\n<script src='/cross-domain/respond.js'></script>\n<!-- Respond.js proxy on external server -->\n<link href='http://pullentity.s3.amazonaws.com/cross-domain/respond-proxy.html' id='respond-proxy' rel='respond-proxy'>\n<!-- Respond.js redirect location on local server -->\n<link href='/cross-domain/respond.proxy.gif' id='respond-redirect' rel='respond-redirect'>\n<script src='/cross-domain/respond.proxy.js'></script>\n<script src='http://pullentity.s3.amazonaws.com/uploads/theme_asset/modifica/theme/marcelofica/assets/application.js?1401740998' type='text/javascript'></script>\n\n",
+  "list": "<style>\n  .backstretch{display:none}\n</style>\n<div class='col-12'>\n  <h2>{{section.title}}</h2>\n  <div class='thumbnails'>\n    {{#each projects}}\n    <div class='col-lg-5 col-sm-3 col-4'>\n      <div class='thumbnail'>\n        <a href='{{ProjectUrl this}}'>\n          <img alt='{{title}}' class='img-responsive' src=\"{{ProjectImg 'medium'}}\">\n        </a>\n        <div class='caption'>\n          <h4>\n            <a class='pjax' href='{{ProjectUrl this}}'>{{ title }}</a>\n          </h4>\n        </div>\n      </div>\n    </div>\n    {{/each}}\n  </div>\n</div>\n",
+  "assets": {
+    "images": [
+      "blank.gif",
+      "classic-loader.gif",
+      "classic-map.png",
+      "fancybox_buttons.png",
+      "fancybox_loading.gif",
+      "fancybox_loading@2x.gif",
+      "fancybox_overlay.png",
+      "fancybox_sprite.png",
+      "fancybox_sprite@2x.png",
+      "loading.gif",
+      "loadingphoto.gif",
+      "ps_neutral.png"
+    ],
+    "js": [
+      "application.js",
+      "fica.js"
+    ],
+    "css": [
+      "application.css"
+    ],
+    "fonts": [
+      "fontawesome-webfont.eot",
+      "fontawesome-webfont.svg",
+      "fontawesome-webfont.ttf",
+      "fontawesome-webfont.woff"
+    ]
+  }
+}
+

@@ -1,0 +1,70 @@
+:javascript
+  // put inline js here or use assets path
+
+  $(function() {
+
+    //$.pjax.defaults.timeout = 5000;
+    //$('a.pjax').pjax('[data-pjax-container]');
+
+    function onAfter(curr, next, opts) {
+      var index = opts.currSlide;
+      //$('#prev')[index == 0 ? 'hide' : 'show']();
+      //$('#next')[index == opts.slideCount - 1 ? 'hide' : 'show']();
+    }
+    function onBefore(curr, next, opts) {
+      $("#num").html("("+ (opts.currSlide + 1) + " of " + opts.slideCount + ")");
+    }
+    $('#slideshow')
+      .livequery(function(){
+      $(this).cycle({
+      fx:     'fade',
+      prev:   '#prev',
+      next:   '#next',
+      after:   onAfter,
+      before:   onBefore,
+      timeout: 0
+      });
+    });
+
+    $(".fancybox").livequery(function(){
+      $(this).fancybox({
+        padding : 0,
+        openEffect  : 'none',
+        closeEffect : 'none',
+        arrows: true,
+          next : {
+            13 : 'left', // enter
+            34 : 'up',   // page down
+            39 : 'left', // right arrow
+            40 : 'up'    // down arrow
+          },
+          prev : {
+            8  : 'right',  // backspace
+            33 : 'down',   // page up
+            37 : 'right',  // left arrow
+            38 : 'down'    // up arrow
+          },
+          close  : [27], // escape key
+          play   : [32], // space - start/stop slideshow
+          toggle : [70]  // letter "f" - toggle fullscreen
+      });
+    });
+
+
+    $('.myCarousel')
+      .livequery(function(){
+      $(this).find(".item").first().addClass('active');
+      $(this).carousel();
+    });
+
+    $.ajaxSetup({
+      dataType: "script",
+      beforeSend: function() {
+        return $("#loader").fadeIn();
+      },
+      complete: function() {
+        return $("#loader").fadeOut();
+      }
+    });
+
+  });

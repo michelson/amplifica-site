@@ -1,0 +1,39 @@
+%script{ type: "text/x-handlebars-template", id: "layout"}
+  
+  %nav.transparent.navbar.navbar-fixed-top{role:"navigation"}
+    .container
+      .navbar-header
+        %button.navbar-toggle{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        .title 
+          %a.navbar-brand{:href => "/#"} {{name}}
+
+      .navbar-inner.pull-right
+        .nav-collapse.collapse
+          %ul.nav.navbar-nav
+            %li
+              %a{:href => "/#"} Home
+            {{#each sections}}
+            {{#show_in_menu}}
+            %li
+              %a{:href => "{{SectionUrl this}}"} {{title}}
+            {{/show_in_menu}}
+            {{/each}}
+            -#
+              %li
+                %a{:href => "/blog"} BLOG
+
+  .container
+    #content
+    #inner
+
+
+  .clearfix
+  #footer
+    Marcelo Fica
+
+    \-  copyright 2013
+

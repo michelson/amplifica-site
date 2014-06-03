@@ -1,0 +1,11 @@
+<div class='container'>
+  <h2 class='exhibit-title title'>{{title}}</h2>
+  <div id='galleria'>
+    {{#each photos}}
+    <img src="{{PhotoImg 'xlarge'}}">
+    {{/each}}
+  </div>
+</div>
+<div class='col-12'>
+  <p>{{{ body }}}</p>
+</div>
